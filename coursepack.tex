@@ -5,12 +5,42 @@
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{csquotes}
+\usepackage{color}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+
+\makeatother
+
 
 \title{Physics 101 MSPS Tutorial Course Pack}
 \author{MSPS}
 
 \newenvironment{problem}[2]{\textbf{Problem {#1} - {#2}} \begin{displayquote}}{\end{displayquote}}
-
+\newenvironment{answer}[2]{\textbf{Answer {#1} - {#2}} \begin{displayquote}}{\end{displayquote}}
 
 \begin{document}
 
@@ -24,6 +54,33 @@
 \hspace{5mm}This is the MSPS course pack for the PHYS 101 tutorial. The chapters follow the PHYS 101 curriculum from the the textbook by R. D. Knight titled "Physics for Scientists and Engineers: A Stategic Approach". Each chapter has a brief overview of the concepts covered by the textbook, a section of key equations (if applicable) followed by problems and answers related to the material. 
 
 If you find any typos or have any questions email the McGill Society of Physics Students at mcgill.physics@gmail.com. Do not copy or distribute this course pack without explicit permission of MSPS.  
+
+\pagebreak
+
+% ----------- Chapter EXAMPLE -------------------
+
+\noindent\section*{Chapter Example - Example Title}
+\rule{\linewidth}{1pt}
+\subsection*{Overview}
+
+\input{"./Chapter Example/Overview.tex"}
+
+\subsection*{Key Equations} 
+
+\input{"./Chapter Example/Key_Equations.tex"}
+
+\vspace{4mm}
+\begin{center}
+  \rule{6cm}{0.5pt}
+\end{center}
+
+\subsection*{Problems}
+
+\input{"./Chapter Example/Problems.tex"}
+
+\subsection*{Answers}
+
+\input{"./Chapter Example/Answers.tex"}
 
 \pagebreak
 % ----------- Chapter 1 -------------------
